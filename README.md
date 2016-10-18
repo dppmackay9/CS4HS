@@ -1,4 +1,4 @@
-Contains search algorithms written in Java
+Contains searching and sorting algorithms written in Java
 
 ##Purpose of this Repository
 In December 2015, I volunteered as an Outreach Assistant for a Google and Victoria University hosted event called CS4HS. 
