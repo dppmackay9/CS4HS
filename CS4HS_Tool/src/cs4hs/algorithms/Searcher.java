@@ -3,26 +3,26 @@ package cs4hs.algorithms;
 import java.util.List;
 
 /**
- * Uses searching algorithms to find a specific item inside the array
+ * This class contains static method which utilises different searching
+ * algorithms. This class cannot be instantiated.
  * 
- * Search algorithms: 
+ * Search algorithms:
  * <ul>
  * <li>linear Search</li>
  * <li>binary search</li>
  * <li>interpolation search</li>
  * </ul>
+ * 
  * @author Chris Rabe
  * @version 0.4
  */
 public class Searcher {
-	public Searcher() {
-	}
 
 	/**
 	 * Searches through the collection linearly. Returns -1 if nothing was found
 	 * 
 	 */
-	public int linearSearch(int item, List<Integer> data) {
+	public static int linearSearch(int item, List<Integer> data) {
 		int index = 0;
 		for (int num : data) { // iterate through the list
 			if (num == item) { // if item is found
@@ -39,7 +39,7 @@ public class Searcher {
 	 * 
 	 * 
 	 */
-	public int binarySearch(int item, List<Integer> data) {
+	public static int binarySearch(int item, List<Integer> data) {
 		int low = 0;
 		int high = data.size() - 1;
 
@@ -60,7 +60,7 @@ public class Searcher {
 	/**
 	 * Utilises interpolation search to find the item passed.
 	 */
-	public int interpolationSearch(int item, List<Integer> data) {
+	public static int interpolationSearch(int item, List<Integer> data) {
 		int low = 0;
 		int high = data.size() - 1;
 
@@ -87,5 +87,9 @@ public class Searcher {
 			}
 		}
 		return -1;
+	}
+
+	private Searcher() {
+		// Only access to methods is required
 	}
 }
