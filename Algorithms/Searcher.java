@@ -1,5 +1,3 @@
-package cs4hs.algorithms;
-
 import java.util.List;
 
 /**
