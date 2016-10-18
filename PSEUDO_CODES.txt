@@ -1,0 +1,119 @@
+Sorting Algorithms
+
+ [SELECTION SORT PSEUDO CODE]
+  for each element of the array {
+     set a variable which marks the item of the end of the sorted set
+        compare the marked item with all the elements after it {
+           if the item being compared is smaller than the marker's item
+                set the marker's position as the index of that item
+		}
+    swap the item at the end of the sorted set with the marker's item
+    repeat process again until it reaches the end of the array
+  }
+ 
+  [INSERTION SORT PSEUDO CODE]
+  while there are items in the array{
+      store the last element of the sorted set in a variable
+      set a marker after than last element of the sorted set
+      while the marker is not pointing at the first index of the array and the marker's item is smaller than the item before it {
+          keep moving the marker's item down
+      }
+  }
+  
+ [PSEUDO CODE FOR MERGE SORT]
+ 
+  function mergeSort(data, temp, low, high) {
+      if the array can still be divided in half (low < high-1) {
+          find the mid point
+          mergeSort the left half (index low up to index mid)
+          mergeSort the right half (index mid up to index high)
+          merge all the data together
+      }
+  }
+ 
+  [PSEUDO CODE FOR MERGE]
+  function merge(from, to, low, mid, high) {
+      index = low //this is the variable which keeps track of where we place the items into the original data
+      indxLeft = low //left hand side of the from array
+      indxRight = mid //right hand side of the from array
+      
+      while indxLeft is less than mid and indxRight is less than high {
+          if the item in indxLeft is less than or equal to the item in indxRight {
+              place the item of indxLeft into the original array
+              move pointers up
+          }
+          else {
+              place the item of indxRight into the original array
+              move pointers up
+          }
+      }
+     //copy remainder
+     while there's items on the left hand side
+           place those items in the "to" array
+     
+     while there's items on the right hand side
+           place those items in the "to" array
+  }
+  
+Searching Algorithms
+
+[Linear Search Pseudo Code]
+ while there's still items inside the array {
+     if the item is equal to the item you want{
+         return the item
+     }
+     else
+         keep moving up
+ }
+ return -1 if nothing in the array matches what you want
+ 
+[BINARY SEARCH PSEUDO CODE]
+  set low variable as the first index of the array
+  set high variable as the last item of the array
+  
+  while (low is less than high)
+      find mid variable by adding both low and high variables and divide by two
+      if the item you want is equal to the mid item { return mid index }
+      if the item is bigger than the item in the mid index { set low variable after the mid index }
+      else { set high variable before the mid index }
+  }
+  return low variable (or high variable because low and high would be in the same position when it finishes the search) 
+  
+[Interpolation Search Info]
+  It works like binary search, however it uses some type of constant to locate where the item would be
+  The data must be sorted and UNIFORM for this type of search to work.
+  
+  the constant is calculated via the equation:
+  k = (ITEM - array[low]) / (array[high] - array[low])
+  
+  and the mid point is calculated using
+  
+  low + k * (high - low)
+  
+  the mid point almost always points to where the item would be in, therefore it's extremely fast.
+  
+  [EXAMPLE]
+  
+  If you have an array with 10 elements:
+  
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  
+  and you want to search for number 6, interpolation search would use the equation to find the mid point:
+  
+  k = (6 - 1)/(10-1)
+  k = 0.6 (0.555555)
+  
+  then it uses the k constant to find the mid point:
+  
+  mid = 0 + 0.5555 * (10 - 1)
+  mid = 5
+  
+  now if we look at the array, number 5 is contained at index 5. Which is correct.
+  
+  [NOTE]
+  k would ALWAYS be within the 0 - 1 range if the item is inside the array. If it's not, then it would give a value more than 1 or less than 0.
+  Example:
+   If you want to search for 11:
+   
+   k = (11 - 1) / (10 - 1)
+   k = 1.11111
