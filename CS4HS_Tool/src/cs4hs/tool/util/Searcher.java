@@ -1,4 +1,4 @@
-package cs4hs.backend;
+package cs4hs.tool.util;
 
 public class Searcher {
 
