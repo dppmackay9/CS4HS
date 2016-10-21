@@ -12,7 +12,7 @@ import java.util.List;
  * 
  * @author Chris
  */
-public class SortNode extends FNode {
+public abstract class SortNode extends FNode {
 
 	private int minPtr;
 
