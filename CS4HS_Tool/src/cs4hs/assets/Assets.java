@@ -19,6 +19,10 @@ public class Assets {
 
 	// File Getters
 
+	public static InputStream getData10() {
+		return getFile("data-10");
+	}
+
 	public static InputStream getData100() {
 		return getFile("data-100");
 	}
