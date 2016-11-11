@@ -1,4 +1,4 @@
-Contains searching and sorting algorithms written in Java
+## 2016 README file
 
 ##Purpose of this Repository
 In December 2015, I volunteered as an Outreach Assistant for a Google and Victoria University hosted event called CS4HS. 
@@ -10,12 +10,11 @@ your purpose. Feel free to fork or download this repository.
 ##Current Search Algorithms in Repository:
 - Linear Search
 - Binary Search
-- Interpolation Search
 
 ##Current Sorting Algorithms in Repository
 - Selection Sort
 - Insertion Sort
-- Merge Sort
+
 
 ## DESCRIPTION
 
@@ -31,13 +30,6 @@ your purpose. Feel free to fork or download this repository.
 - Looks at the mid point and keeps dividing the data in halves until it finds the item.
 - Can only be implemented if the data is already sorted (otherwise it produces logic errors).
 
-####Interpolation Search Description:
-- Acts just like binary search
-- Best implemented if the data is uniformly sorted
-- Uses a constant "k" to calculate a rough location of the item you want
-- k = (ITEM - Array[low]) / (Array[high] - Array[low])
-- mid point = low + k* (high - low)
-
 ###SORTING ALGORITHMS
 
 ####Selection Sort Description:
@@ -52,10 +44,6 @@ your purpose. Feel free to fork or download this repository.
 - It's slightly quicker than selection sort due to its early exit.
 - Stable sorting algorithm
 
-####Merge Sort Description
-- Stable sorting algorithm
-- Halves the data and then merges the two halves together to sort them
-- Constant complexity in all cases (halves and merges, no matter how large or small the data is)
 
 ## PERFORMANCE
 The performance of the search algorithms will be represented by the Landau's symbol, otherwise known as the "Big O Notation". The Big O Notation is used to symbolse the complexity and performance of the algorithm in computer science and in mathematics, it is used to describe the asymptotic behaviour of functions. The big O notation tells you how fast the function grows or declines. 
@@ -74,10 +62,6 @@ http://web.mit.edu/16.070/www/lecture/big_o.pdf
 - Worst Case: Binary search is searching for the item that is not in the list. It will keep dividing data in half until it doesn't have anything to divide anymore. O(log n)
 - Average Case: Binary search is searching for something which is inside the list but it's not directly in the middle O(log n)
 
-#### Performance of Interpolation Search
-- Best Case: When the data is uniformly distributed O(log log n)
-- Worst Case: data is not uniformly distributed O(n)
-- Average Case: data is somewhat uniformly distributed O(log n)
 
 #### Performance of Selection Sort:
 - Best Case: O(n^2)
@@ -89,9 +73,3 @@ It's the same for all cases because selection sort looks through the elements N 
 - Best Case: When data is already sorted; O(n)
 - Worst Case: When data is reversed: O(n^2)
 - Average Case: When the data is partially sorted O(n^2)
-
-#### Performance of Merge Sort:
-- Best Case: O(log n)
-- Worst Case: O(log n)
-- Average Case: O(log n)
-It's the same for all cases because merge sort only halves and then merges the list no matter how big or small it is.

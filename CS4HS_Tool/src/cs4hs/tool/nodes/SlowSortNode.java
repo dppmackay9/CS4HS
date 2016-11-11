@@ -12,16 +12,16 @@ import java.util.List;
  * 
  * @author Chris
  */
-public class SelectionNode extends SortNode {
+public class SlowSortNode extends SortNode {
 
 	private int sweep; // the one which searches for the min index
 
-	public SelectionNode(List<Integer> data, int mainPtr, int minPtr) {
+	public SlowSortNode(List<Integer> data, int mainPtr, int minPtr) {
 		super(data, mainPtr, minPtr);
 		this.sweep = mainPtr;
 	}
 
-	public SelectionNode(List<Integer> data, int mainPtr, int minPtr, int sweep) {
+	public SlowSortNode(List<Integer> data, int mainPtr, int minPtr, int sweep) {
 		this(data, mainPtr, minPtr);
 		this.sweep = sweep;
 	}
