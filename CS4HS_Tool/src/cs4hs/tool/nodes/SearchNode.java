@@ -18,6 +18,7 @@ public class SearchNode extends FNode {
 
 	public SearchNode(List<Integer> data, int mainPtr) {
 		super(data, mainPtr);
+		item = -1;
 	}
 
 	public int getItem() {
