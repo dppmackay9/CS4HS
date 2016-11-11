@@ -18,7 +18,7 @@ import cs4hs.tool.nodes.SlowSortNode;
  * 
  * @author Chris
  */
-public class Sorter {
+public abstract class Sorter {
 
 	/**
 	 * Sorts the given data using the selection sort algorithm. It returns the

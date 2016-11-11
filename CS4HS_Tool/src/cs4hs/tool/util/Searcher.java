@@ -19,7 +19,7 @@ import cs4hs.tool.nodes.SearchNode;
  * 
  * @author Chris
  */
-public class Searcher {
+public abstract class Searcher {
 
 	/**
 	 * Performs a linear search algorithm to find the given item. It returns the
