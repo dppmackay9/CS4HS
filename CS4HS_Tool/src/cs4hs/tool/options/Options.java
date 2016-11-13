@@ -8,6 +8,10 @@ package cs4hs.tool.options;
  */
 public abstract class Options {
 
+	public static enum Algorithm {
+		LINEAR, BINARY, SELECTION, INSERTION
+	}
+
 	/**
 	 * If safety mode is true, then it means that the tool would try to verify
 	 * if the pre-condition of the algorithm is met and always gives the

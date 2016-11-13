@@ -6,13 +6,17 @@
  */
 package cs4hs.tool;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import cs4hs.tool.nodes.FNode;
 import cs4hs.tool.options.Options;
 import cs4hs.tool.util.Searcher;
+import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.Sorter;
+import cs4hs.tool.util.ToolException;
+import cs4hs.tool.options.Options.*;
 
 /**
  * This class keeps track of all the steps taken by the algorithm. It provides
@@ -28,11 +32,7 @@ import cs4hs.tool.util.Sorter;
  */
 public class Tool {
 
-	public static enum Algorithm {
-		LINEAR, BINARY, SELECTION, INSERTION
-	}
-
-	private List<FNode> steps;
+	private List<FNode> steps = new ArrayList<FNode>();
 
 	private int cur = 0;
 
@@ -70,45 +70,56 @@ public class Tool {
 	}
 
 	/**
-	 * Returns true if the current point is at the end of the steps list.
-	 * 
-	 * @return
-	 */
-	public boolean atEnd() {
-		if (steps == null) {
-			return true;
-		}
-		return cur == steps.size();
-	}
-
-	/**
 	 * Retrieves the function node which the tool is currently pointing to.
 	 * 
 	 * @return
+	 * @throws ToolException
+	 * @throws SignalException
 	 */
-	public FNode getCurNode() {
-		if (steps == null || steps.isEmpty()) {
-			return null;
+	public FNode getCurNode() throws ToolException{
+		if (steps.isEmpty()) {
+			throw new ToolException("No available steps to show.");
 		}
 		return steps.get(cur);
 	}
 
 	/**
 	 * Moves the cursor forward
+	 * 
+	 * @throws SignalException
 	 */
-	public void step() {
+	public void step() throws SignalException {
 		if (cur < steps.size() - 1) {
 			cur++;
+		}
+		if (atEnd()) {
+			throw new SignalException("At end");
 		}
 	}
 
 	/**
 	 * Moves the cursor backward
+	 * 
+	 * @throws SignalException
 	 */
-	public void undo() {
+	public void undo() throws SignalException {
 		if (cur > 0) {
 			cur--;
 		}
+		if (atEnd()) {
+			throw new SignalException("At End");
+		}
 	}
 
+	/**
+	 * Returns true if the current point is at the end of the steps list.
+	 * 
+	 * @return
+	 */
+	private boolean atEnd() {
+		if (steps == null) {
+			return true;
+		}
+		return cur >= steps.size() - 1 || cur <= 0;
+	}
 }
