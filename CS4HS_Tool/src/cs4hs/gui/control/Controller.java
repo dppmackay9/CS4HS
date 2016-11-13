@@ -64,6 +64,7 @@ public class Controller extends JFrame implements Runnable {
 	}
 
 	private View[] views;
+	private Thread updater;
 	private Tool tool;
 	private int cur;
 	private int prev;
@@ -138,6 +139,7 @@ public class Controller extends JFrame implements Runnable {
 	 */
 	public void doStep() throws SignalException {
 		tool.step();
+		views[cur].update();
 	}
 
 	/**
@@ -149,21 +151,41 @@ public class Controller extends JFrame implements Runnable {
 	 */
 	public void doUndo() throws SignalException {
 		tool.undo();
+		views[cur].update();
 	}
 
+	/**
+	 * Activates an updater thread which updates the current view of the
+	 * controller.
+	 */
 	public void doRun() {
-		Thread thread = new Thread(this);
-		thread.start();
+		if (updater == null) {
+			updater = new Thread(this);
+			updater.start();
+		}
 	}
 
-	// Helper Methods
+	/**
+	 * Skips to the very end of the algorithm
+	 */
+	public void doSkip() {
+		stop();
+		tool.skip();
+		views[cur].update();
+	}
+
+	// Thread Methods
+
+	private void stop() {
+		updater = null;
+	}
 
 	/**
 	 * Steps through the algorithm and display the data.
 	 */
 	@Override
 	public void run() {
-		while (true) {
+		while (updater != null) {
 			try {
 				doStep();
 				views[cur].update();
@@ -176,6 +198,7 @@ public class Controller extends JFrame implements Runnable {
 				break;
 			}
 		}
+		updater = null;
 	}
 
 	// Variable Initialisation

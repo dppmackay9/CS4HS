@@ -76,11 +76,20 @@ public class Tool {
 	 * @throws ToolException
 	 * @throws SignalException
 	 */
-	public FNode getCurNode() throws ToolException{
+	public FNode getCurNode() throws ToolException {
 		if (steps.isEmpty()) {
 			throw new ToolException("No available steps to show.");
 		}
 		return steps.get(cur);
+	}
+
+	/**
+	 * Skips the whole list of functions and puts the cursor to the end.
+	 */
+	public void skip() {
+		if (!steps.isEmpty()) {
+			cur = steps.size() - 1;
+		}
 	}
 
 	/**
