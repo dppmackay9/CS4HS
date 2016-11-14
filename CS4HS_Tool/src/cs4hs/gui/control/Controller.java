@@ -39,6 +39,11 @@ public class Controller extends JFrame implements Runnable {
 		public View(Controller controller) {
 			this.controller = controller;
 			this.setFocusable(false);
+			initialise();
+		}
+
+		public Controller getController() {
+			return controller;
 		}
 
 		/**
@@ -232,8 +237,7 @@ public class Controller extends JFrame implements Runnable {
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				int result = JOptionPane.showConfirmDialog(Controller.this, "Are you sure you want to quit?",
-						"Quit game", JOptionPane.YES_NO_OPTION);
+				int result = DialogFactory.showConfirm(Controller.this, "Are you sure you want to quit?");
 				if (result == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}

@@ -11,9 +11,8 @@ import cs4hs.gui.control.Controller.View;
 @SuppressWarnings("serial")
 public class MainView extends View {
 
-	private static final String[] searchAlgorithms = { "Linear", "Binary" };
-	private static final String[] sortAlgorithms = { "Selection", "Insertion" };
-	private static final String[] availableData = { "data-10", "data-100", "data-1k", "data-10k", "data-100k" };
+	private static final String[] ALGORITHMS = { "Linear Search", "Binary Search", "Selection Sort", "Insertion Sort" };
+	private static final String[] DATA = { "data-10", "data-100", "data-1k", "data-10k", "data-100k" };
 
 	public MainView(Controller controller) {
 		super(controller);
