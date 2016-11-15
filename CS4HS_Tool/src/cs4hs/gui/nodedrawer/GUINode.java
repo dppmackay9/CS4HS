@@ -1,29 +1,22 @@
-package cs4hs.gui.util;
+package cs4hs.gui.nodedrawer;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import cs4hs.gui.nodedrawer.values.Colours;
+import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
 
 /**
  * This class provides a method which represents the FNode. The GUINode draws in
- * the center of the
+ * the center of the JPanel. This class is responsible for drawing the bars.
  * 
  * @author Chris
  */
 public class GUINode {
-
-	private static final int PADDING = 20;
-
-	private static final Color BAR_COLOUR = new Color(102, 204, 255);
-	// Pointer Colours
-	private static final Color A_COLOUR = new Color(255, 153, 0);
-	private static final Color B_COLOUR = new Color(51, 204, 51);
-	private static final Color C_COLOUR = new Color(204, 102, 255);
 
 	private FNode node;
 
@@ -39,18 +32,20 @@ public class GUINode {
 	 * @param g
 	 */
 	public void draw(JPanel parent, Graphics g) {
-		Dimension size = parent.getSize();
-		// Draw the background
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, size.width, size.height);
-		// Draw the data representation
 		if (node != null) {
+			Dimension size = parent.getSize();
+			// Draw the background
+			g.setColor(Colours.OUTLINE_COLOUR);
+			g.fillRect(0, 0, size.width, size.height);
+			// Draw the data representation
 			// Find the width, height scale, mid and bot line
-			int width = (size.width - (PADDING * 2)) / node.getData().size();
-			int scale = (size.height - (PADDING * 2)) / node.getData().size();
+			int width = (size.width - (Values.PADDING * 2)) / node.getData().size();
+			int scale = (size.height - (Values.PADDING * 2)) / node.getData().size();
 			int mid = size.height / 2;
 			int bot = mid + ((node.getData().size() * scale) / 2);
+			// draw the bars and highlights
 			drawBars(g, width, scale, bot);
+			Highlighter.draw(node, g, width, scale, bot);
 		}
 	}
 
@@ -64,12 +59,19 @@ public class GUINode {
 	 */
 	private void drawBars(Graphics g, int width, int scale, int bot) {
 		List<Integer> data = node.getData();
-		g.setColor(BAR_COLOUR);
 		for (int i = 0; i < data.size(); i++) {
 			int height = data.get(i) * scale;
-			int x = (i * width) + PADDING;
+			int x = (i * width) + Values.PADDING;
 			int y = bot - height;
-			g.fillRect(x, y, width, height);
+			// draws the bar
+			drawBar(g, x, y, width, height);
 		}
+	}
+
+	private void drawBar(Graphics g, int x, int y, int width, int height) {
+		g.setColor(Colours.BAR_COLOUR);
+		g.fillRect(x, y, width, height);
+		g.setColor(Colours.OUTLINE_COLOUR);
+		g.drawRect(x, y, width, height);
 	}
 }

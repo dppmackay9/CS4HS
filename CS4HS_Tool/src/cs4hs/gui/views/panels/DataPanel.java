@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import cs4hs.gui.control.Controller.View;
-import cs4hs.gui.util.GUINode;
+import cs4hs.gui.nodedrawer.GUINode;
 import cs4hs.tool.nodes.FNode;
 
 /**
