@@ -4,6 +4,7 @@ import cs4hs.gui.control.Controller;
 import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.views.display.Display;
 import cs4hs.gui.views.display.MainDisplay;
+import cs4hs.tool.util.SignalException;
 
 /**
  * This view contains all the controls and display of the tool
@@ -30,7 +31,7 @@ public class MainView extends View {
 	}
 
 	@Override
-	public void update() {
+	public void update() throws SignalException {
 		display.update();
 	}
 

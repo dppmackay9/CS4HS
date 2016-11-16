@@ -8,6 +8,8 @@ package cs4hs.tool.options;
  */
 public abstract class Options {
 
+	private static final int NUM_ALGORITHMS = 4;
+
 	public static enum Algorithm {
 		LINEAR, BINARY, SELECTION, INSERTION
 	}
@@ -20,5 +22,14 @@ public abstract class Options {
 	 * appropriate data for method before calling it.
 	 */
 	public static boolean SAFETY_MODE = true;
+
+	public static String[] getAlgorithms() {
+		String[] tmp = new String[NUM_ALGORITHMS];
+		tmp[0] = "Linear";
+		tmp[1] = "Binary";
+		tmp[2] = "Selection";
+		tmp[3] = "Insertion";
+		return tmp;
+	}
 
 }

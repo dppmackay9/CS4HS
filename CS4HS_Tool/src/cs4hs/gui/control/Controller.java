@@ -59,8 +59,10 @@ public class Controller extends JFrame implements Runnable {
 		/**
 		 * Updates any components inside the View when any data changed in the
 		 * Model
+		 * 
+		 * @throws SignalException
 		 */
-		public abstract void update();
+		public abstract void update() throws SignalException;
 
 		@Override
 		public Dimension getPreferredSize() {
@@ -176,7 +178,10 @@ public class Controller extends JFrame implements Runnable {
 	public void doSkip() {
 		stop();
 		tool.skip();
-		views[cur].update();
+		try {
+			views[cur].update();
+		} catch (SignalException e) {
+		}
 	}
 
 	// Thread Methods

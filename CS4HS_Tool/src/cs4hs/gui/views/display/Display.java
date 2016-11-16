@@ -2,10 +2,15 @@ package cs4hs.gui.views.display;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import cs4hs.gui.control.Controller.View;
+import cs4hs.gui.util.ComponentFactory;
+import cs4hs.tool.util.SignalException;
 
 /**
  * This class provides a skeletal implementation of the display panels. It steps
@@ -41,8 +46,10 @@ public abstract class Display extends JPanel {
 
 	/**
 	 * Updates the display
+	 * 
+	 * @throws SignalException
 	 */
-	public abstract void update();
+	public abstract void update() throws SignalException;
 
 	private void initialise() {
 		JPanel controlPanel = createControl();
@@ -57,4 +64,17 @@ public abstract class Display extends JPanel {
 	public Dimension getPreferredSize() {
 		return parent.getPreferredSize();
 	}
+
+	protected JPanel createComponentPane(JComponent component, String text) {
+		// setup components
+		JLabel label = ComponentFactory.createLabel(text);
+		// setup panel
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		// put everything together
+		panel.add(label);
+		panel.add(component);
+		return panel;
+	}
+
 }
