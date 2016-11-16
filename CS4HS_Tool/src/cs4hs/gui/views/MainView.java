@@ -18,11 +18,11 @@ public class MainView extends View {
 
 	public MainView(Controller controller) {
 		super(controller);
-		this.display = new MainDisplay(this);
 	}
 
 	@Override
 	public void initialise() {
+		this.display = new MainDisplay(this);
 		this.add(display);
 	}
 

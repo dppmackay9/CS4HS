@@ -77,7 +77,7 @@ public class Controller extends JFrame implements Runnable {
 	private int prev;
 
 	public Controller() {
-		super(String.format("Voucher Generator v%.2f", Main.VERSION));
+		super(String.format("CS4HS Tool v%.2f", Main.VERSION));
 		initialise();
 	}
 

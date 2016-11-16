@@ -1,10 +1,13 @@
 package cs4hs.gui.views.display;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import cs4hs.assets.Assets;
@@ -46,6 +49,10 @@ public class MainDisplay extends Display {
 		JPanel boxControl = createBoxControl();
 		// Set up the panel
 		JPanel panel = new JPanel();
+		Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+		Border titleBorder = BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Control Panel"),
+				blackLine);
+		panel.setBorder(titleBorder);
 		panel.setLayout(new GridLayout(2, 0));
 		// Put everything together
 		panel.add(boxControl);

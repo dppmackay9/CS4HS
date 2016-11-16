@@ -21,9 +21,9 @@ public abstract class Assets {
 
 	// Paths
 
-	private static final String FILE_STORAGE_PATH = "/cs4hs/assets/files";
+	private static final String FILE_STORAGE_PATH = "/cs4hs/assets/files/";
 
-	private static final String IMAGE_STORAGE_PATH = "/cs4hs/assets/img";
+	private static final String IMAGE_STORAGE_PATH = "/cs4hs/assets/img/";
 
 	// Cached images
 
