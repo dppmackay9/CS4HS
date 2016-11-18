@@ -99,11 +99,11 @@ public class Tool {
 	 * @throws SignalException
 	 */
 	public void step() throws SignalException {
-		if (cur < steps.size() - 1) {
-			cur++;
-		}
 		if (atEnd()) {
 			throw new SignalException("At end");
+		}
+		if (cur < steps.size() - 1) {
+			cur++;
 		}
 	}
 
@@ -113,11 +113,11 @@ public class Tool {
 	 * @throws SignalException
 	 */
 	public void undo() throws SignalException {
-		if (cur > 0) {
-			cur--;
-		}
 		if (atEnd()) {
 			throw new SignalException("At End");
+		}
+		if (cur > 0) {
+			cur--;
 		}
 	}
 
@@ -130,6 +130,6 @@ public class Tool {
 		if (steps == null) {
 			return true;
 		}
-		return cur >= steps.size()|| cur < 0;
+		return cur > steps.size() - 1 || cur < 0;
 	}
 }

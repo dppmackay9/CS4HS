@@ -216,6 +216,8 @@ public class Controller extends JFrame implements Runnable {
 				doStep();
 				views[cur].update();
 			} catch (SignalException e) {
+				Options.IS_RUNNING = false;
+				System.out.println("Got here");
 				break;
 			}
 			try {
