@@ -12,14 +12,16 @@ import javax.swing.JPanel;
 
 import cs4hs.Main;
 import cs4hs.assets.Assets;
-import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.gui.util.ComponentFactory;
 import cs4hs.gui.util.DialogFactory;
 import cs4hs.tool.Tool;
 import cs4hs.tool.nodes.FNode;
-import cs4hs.tool.options.Options;
 import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.ToolException;
+import cs4hs.tool.values.AppInfo;
+import cs4hs.tool.values.Options;
+import cs4hs.tool.values.Values;
+import cs4hs.tool.values.Values.Speed;
 
 /**
  * Controls all the different views of the program and calls methods from the
@@ -217,7 +219,7 @@ public class Controller extends JFrame implements Runnable {
 				break;
 			}
 			try {
-				Thread.sleep(10);
+				Thread.sleep(Options.RUN_SPEED);
 			} catch (InterruptedException e) {
 				break;
 			}
@@ -268,6 +270,8 @@ public class Controller extends JFrame implements Runnable {
 
 	// Options Menu
 	private JMenuItem safety; // safety mode option
+	private JMenuItem speed; // speed of the run algorithm
+	private JMenuItem about; // information about the program
 
 	private void initialiseGUI() {
 		initialiseMenu();
@@ -297,12 +301,19 @@ public class Controller extends JFrame implements Runnable {
 	private void initialiseMenu() {
 		// Create Menu Items
 		safety = new JMenuItem(String.format("Toggle Safety %s", Options.SAFETY_MODE ? "Off" : "On"));
+		speed = new JMenuItem("Set Speed");
+		about = new JMenuItem("About");
 		// Make Options Menu
 		JMenu options = new JMenu("Options");
+		JMenu help = new JMenu("Help");
+		// Add components to the menu
 		options.add(safety);
+		options.add(speed);
+		help.add(about);
 		// Put everything together in menu bar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(options);
+		menuBar.add(help);
 		this.setJMenuBar(menuBar);
 	}
 
@@ -312,6 +323,22 @@ public class Controller extends JFrame implements Runnable {
 			Options.SAFETY_MODE = !Options.SAFETY_MODE;
 			// Change Text of Safety
 			safety.setText(String.format("Toggle Safety %s", Options.SAFETY_MODE ? "Off" : "On"));
+		});
+		speed.addActionListener(e -> {
+			Speed speed = (Speed) JOptionPane.showInputDialog(this, "Select run speed", "", JOptionPane.PLAIN_MESSAGE,
+					null, Speed.values(), Speed.FAST);
+			if (speed == Speed.VERY_SLOW) {
+				Options.RUN_SPEED = Values.VERY_SLOW;
+			} else if (speed == Speed.MEDIUM) {
+				Options.RUN_SPEED = Values.MEDIUM;
+			} else if (speed == Speed.SLOW) {
+				Options.RUN_SPEED = Values.SLOW;
+			} else {
+				Options.RUN_SPEED = Values.FAST;
+			}
+		});
+		about.addActionListener(e -> {
+			DialogFactory.showMessage(this, AppInfo.ABOUT);
 		});
 	}
 }

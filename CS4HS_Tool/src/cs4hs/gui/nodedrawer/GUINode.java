@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import cs4hs.gui.nodedrawer.values.Colours;
-import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
+import cs4hs.tool.values.Colours;
+import cs4hs.tool.values.Values;
 
 /**
  * This class provides a method which represents the FNode. The GUINode draws in

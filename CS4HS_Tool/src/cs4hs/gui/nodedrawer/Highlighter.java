@@ -2,9 +2,9 @@ package cs4hs.gui.nodedrawer;
 
 import java.awt.Graphics;
 
-import cs4hs.gui.nodedrawer.values.Colours;
-import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.*;
+import cs4hs.tool.values.Colours;
+import cs4hs.tool.values.Values;
 
 /**
  * This class provides methods which highlights any special indices of the

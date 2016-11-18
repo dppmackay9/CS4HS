@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
-import cs4hs.tool.options.Options;
 import cs4hs.tool.util.Searcher;
 import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.Sorter;
 import cs4hs.tool.util.ToolException;
+import cs4hs.tool.values.Options;
+import cs4hs.tool.values.Values;
 
 /**
  * This class keeps track of all the steps taken by the algorithm. It provides

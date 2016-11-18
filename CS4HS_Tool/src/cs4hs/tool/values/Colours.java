@@ -1,4 +1,4 @@
-package cs4hs.gui.nodedrawer.values;
+package cs4hs.tool.values;
 
 import java.awt.Color;
 

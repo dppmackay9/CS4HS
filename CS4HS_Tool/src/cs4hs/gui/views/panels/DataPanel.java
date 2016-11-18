@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 
 import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.nodedrawer.GUINode;
-import cs4hs.gui.nodedrawer.values.Colours;
-import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
-import cs4hs.tool.options.Options;
+import cs4hs.tool.values.Colours;
+import cs4hs.tool.values.Options;
+import cs4hs.tool.values.Values;
 
 /**
  * This panel displays the data as bar graphs. It highlights important indices

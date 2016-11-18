@@ -16,8 +16,8 @@ import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.util.ComponentFactory;
 import cs4hs.gui.util.DialogFactory;
 import cs4hs.gui.views.panels.DataPanel;
-import cs4hs.tool.options.Options;
 import cs4hs.tool.util.SignalException;
+import cs4hs.tool.values.Options;
 
 /**
  * This is the display which contains a panel for controlling which algorithm is

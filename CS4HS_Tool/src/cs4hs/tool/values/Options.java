@@ -1,6 +1,4 @@
-package cs4hs.tool.options;
-
-import cs4hs.gui.nodedrawer.values.Values;
+package cs4hs.tool.values;
 
 /**
  * This class contains static variables which represents the settings for this
