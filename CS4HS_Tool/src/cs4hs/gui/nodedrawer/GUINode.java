@@ -34,9 +34,6 @@ public class GUINode {
 	public void draw(JPanel parent, Graphics g) {
 		if (node != null) {
 			Dimension size = parent.getSize();
-			// Draw the background
-			g.setColor(Colours.OUTLINE_COLOUR);
-			g.fillRect(0, 0, size.width, size.height);
 			// Draw the data representation
 			// Find the width, height scale, mid and bot line
 			int width = (size.width - (Values.PADDING * 2)) / node.getData().size();

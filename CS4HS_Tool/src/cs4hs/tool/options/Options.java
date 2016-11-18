@@ -1,5 +1,7 @@
 package cs4hs.tool.options;
 
+import cs4hs.gui.nodedrawer.values.Values;
+
 /**
  * This class contains static variables which represents the settings for this
  * application
@@ -8,13 +10,17 @@ package cs4hs.tool.options;
  */
 public abstract class Options {
 
-	private static final int NUM_ALGORITHMS = 4;
+	// Note: data-1k, data-10k, data-100k are available. However due to
+	// performance issues, I've disabled them for now.
+	public static final String[] DATA = { "data-10", "data-100" };
 
-	public static enum Algorithm {
-		LINEAR, BINARY, SELECTION, INSERTION
+	public static String[] getAlgorithms() {
+		return new String[] { "Linear", "Binary", "Selection", "Insertion" };
 	}
 
-	public static final String[] DATA = { "data-10", "data-100", "data-1k", "data-10k", "data-100k" };
+	public static boolean IS_RUNNING = false;
+
+	public static int RUN_SPEED = Values.FAST;
 
 	/**
 	 * If safety mode is true, then it means that the tool would try to verify
@@ -22,14 +28,5 @@ public abstract class Options {
 	 * appropriate data for method before calling it.
 	 */
 	public static boolean SAFETY_MODE = true;
-
-	public static String[] getAlgorithms() {
-		String[] tmp = new String[NUM_ALGORITHMS];
-		tmp[0] = "Linear";
-		tmp[1] = "Binary";
-		tmp[2] = "Selection";
-		tmp[3] = "Insertion";
-		return tmp;
-	}
 
 }

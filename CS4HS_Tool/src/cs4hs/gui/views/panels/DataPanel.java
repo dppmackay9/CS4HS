@@ -1,5 +1,6 @@
 package cs4hs.gui.views.panels;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -7,7 +8,10 @@ import javax.swing.JPanel;
 
 import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.nodedrawer.GUINode;
+import cs4hs.gui.nodedrawer.values.Colours;
+import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
+import cs4hs.tool.options.Options;
 
 /**
  * This panel displays the data as bar graphs. It highlights important indices
@@ -37,6 +41,23 @@ public class DataPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		node.draw(this, g);
+		// Draw the background
+		g.setColor(Colours.OUTLINE_COLOUR);
+		g.fillRect(0, 0, getSize().width, getSize().height);
+		// Draw an indicator for running threads
+		drawIndicator(g);
+		// Draw the data representation if it exists
+		if (node != null) {
+			node.draw(this, g);
+		}
+	}
+
+	private void drawIndicator(Graphics g) {
+		if (Options.IS_RUNNING) {
+			int size = Values.PADDING;
+			int pos = Values.PADDING / 2 + size;
+			g.setColor(Color.RED);
+			g.fillOval(pos, pos, size, size);
+		}
 	}
 }

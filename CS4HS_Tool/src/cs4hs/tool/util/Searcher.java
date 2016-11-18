@@ -61,6 +61,7 @@ public abstract class Searcher {
 
 		while (low < high) {
 			int mid = (low + high + 1) / 2;
+			steps.add(new BinaryNode(data, mid, high, low));
 			if (item == data.get(mid)) {
 				steps.add(new BinaryNode(data, mid, high, low));
 				return steps;
@@ -70,7 +71,6 @@ public abstract class Searcher {
 			} else {
 				high = mid - 1;
 			}
-			steps.add(new BinaryNode(data, mid, high, low));
 		}
 		return steps;
 	}

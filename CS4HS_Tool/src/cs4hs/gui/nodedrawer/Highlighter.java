@@ -33,10 +33,10 @@ public abstract class Highlighter {
 	 * Draws the other indices related to the dynamic type of the node
 	 */
 	private static void drawSpecialIndices(FNode node, Graphics g, int width, int scale, int bot) {
-		if (node instanceof SearchNode) {
-			drawSearchNode((SearchNode) node, g, width, scale, bot);
-		} else if (node instanceof BinaryNode) {
+		if (node instanceof BinaryNode) {
 			drawBinaryNode((BinaryNode) node, g, width, scale, bot);
+		} else if (node instanceof SearchNode) {
+			drawSearchNode((SearchNode) node, g, width, scale, bot);
 		} else if (node instanceof SlowSortNode) {
 			drawSortNode((SlowSortNode) node, g, width, scale, bot);
 		}
@@ -45,6 +45,9 @@ public abstract class Highlighter {
 	private static void drawSortNode(SlowSortNode node, Graphics g, int width, int scale, int bot) {
 		int[] values = { node.getMinPtr(), node.getSweep() };
 		for (int i = 0; i < values.length; i++) {
+			if (!isValid(values[i], node.getData().size())) {
+				continue;
+			}
 			int height = node.getData().get(values[i]) * scale;
 			int x = (values[i] * width) + Values.PADDING;
 			int y = bot - height;
@@ -59,6 +62,9 @@ public abstract class Highlighter {
 	private static void drawBinaryNode(BinaryNode node, Graphics g, int width, int scale, int bot) {
 		int[] values = { node.getHiPtr(), node.getLoPtr(), node.getItem() };
 		for (int i = 0; i < values.length; i++) {
+			if (!isValid(values[i], node.getData().size())) {
+				continue;
+			}
 			int height = node.getData().get(values[i]) * scale;
 			int x = (values[i] * width) + Values.PADDING;
 			int y = bot - height;
@@ -81,6 +87,10 @@ public abstract class Highlighter {
 		int x = (item * width) + Values.PADDING;
 		int y = bot - height;
 		drawBar(Colours.PURPLE, g, x, y, width, height);
+	}
+
+	private static boolean isValid(int value, int size) {
+		return 0 <= value && value < size;
 	}
 
 	private static void drawBar(int i, Graphics g, int x, int y, int width, int height) {

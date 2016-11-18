@@ -11,12 +11,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import cs4hs.Main;
+import cs4hs.assets.Assets;
+import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.gui.util.ComponentFactory;
 import cs4hs.gui.util.DialogFactory;
 import cs4hs.tool.Tool;
 import cs4hs.tool.nodes.FNode;
 import cs4hs.tool.options.Options;
-import cs4hs.tool.options.Options.Algorithm;
 import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.ToolException;
 
@@ -117,8 +118,14 @@ public class Controller extends JFrame implements Runnable {
 
 	// Methods for Views to Use
 
-	public void doAlgorithm(Algorithm algorithm, int item, List<Integer> data) {
+	public void doAlgorithm(String algorithmStr, String dataStr, int item) throws SignalException {
+		Values.Algorithm algorithm = determineAlgorithm(algorithmStr);
+		if (algorithm == null) {
+			return;
+		}
+		List<Integer> data = Assets.getDataList(dataStr);
 		tool.performAlgorithm(algorithm, item, data);
+		views[cur].update();
 	}
 
 	/**
@@ -186,8 +193,15 @@ public class Controller extends JFrame implements Runnable {
 
 	// Thread Methods
 
-	private void stop() {
+	/**
+	 * Stops the updater from running
+	 */
+	public void stop() {
 		updater = null;
+		try {
+			views[cur].update();
+		} catch (SignalException e) {
+		}
 	}
 
 	/**
@@ -209,6 +223,30 @@ public class Controller extends JFrame implements Runnable {
 			}
 		}
 		updater = null;
+	}
+
+	// Helper Methods
+
+	/**
+	 * Returns the appropriate algorithm enumeration based on the algorithm
+	 * string. Returns null if it does not exist.
+	 * 
+	 * @param algorithmStr
+	 * @return
+	 */
+	private Values.Algorithm determineAlgorithm(String algorithmStr) {
+		switch (algorithmStr) {
+		case "Linear":
+			return Values.Algorithm.LINEAR;
+		case "Binary":
+			return Values.Algorithm.BINARY;
+		case "Selection":
+			return Values.Algorithm.SELECTION;
+		case "Insertion":
+			return Values.Algorithm.INSERTION;
+		default:
+			return null;
+		}
 	}
 
 	// Variable Initialisation

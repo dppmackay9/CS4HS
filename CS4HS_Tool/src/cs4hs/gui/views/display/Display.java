@@ -53,10 +53,10 @@ public abstract class Display extends JPanel {
 
 	private void initialise() {
 		JPanel controlPanel = createControl();
-		//JPanel bodyPanel = createBody();
+		JPanel bodyPanel = createBody();
 		this.setLayout(new BorderLayout());
 		this.add(controlPanel, BorderLayout.NORTH);
-		//this.add(bodyPanel, BorderLayout.CENTER);
+		this.add(bodyPanel, BorderLayout.CENTER);
 		this.addActionListeners();
 	}
 

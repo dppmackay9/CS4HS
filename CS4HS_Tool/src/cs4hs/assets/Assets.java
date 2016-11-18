@@ -6,8 +6,12 @@
 package cs4hs.assets;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -37,29 +41,22 @@ public abstract class Assets {
 
 	private static BufferedImage SKIP_IMAGE;
 
+	private static BufferedImage EXEC_IMAGE;
+
 	// File Getters
 
-	public static InputStream getData10() {
-		return getFile("data-10");
-	}
-
-	public static InputStream getData100() {
-		return getFile("data-100");
-	}
-
-	public static InputStream getData1k() {
-		return getFile("data-1k");
-	}
-
-	public static InputStream getData10k() {
-		return getFile("data-10k");
-	}
-
-	public static InputStream getData100k() {
-		return getFile("data-100k");
+	public static List<Integer> getDataList(String filename) {
+		return getListFromFile(getFile(filename));
 	}
 
 	// Image Getters
+
+	public static BufferedImage getExecImage() {
+		if (EXEC_IMAGE == null) {
+			EXEC_IMAGE = getImage("execute-img.png");
+		}
+		return EXEC_IMAGE;
+	}
 
 	public static BufferedImage getStepImage() {
 		if (STEP_IMAGE == null) {
@@ -99,13 +96,34 @@ public abstract class Assets {
 	// Helper Methods
 
 	/**
+	 * Converts the input stream file into a list of integers by reading it
+	 * 
+	 * @param file
+	 * @return
+	 */
+	private static List<Integer> getListFromFile(InputStream file) {
+		List<Integer> data = new ArrayList<Integer>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(file));
+		String line = "";
+		try {
+			while ((line = br.readLine()) != null) {
+				data.add(Integer.parseInt(line));
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
+	/**
 	 * Retrieves the file stream of the given filename
 	 * 
 	 * @param filename
 	 * @return
 	 */
 	private static InputStream getFile(String filename) {
-		return Assets.class.getResourceAsStream(FILE_STORAGE_PATH + "/%s.txt");
+		return Assets.class.getResourceAsStream(String.format(FILE_STORAGE_PATH + "%s.txt", filename));
 	}
 
 	/**

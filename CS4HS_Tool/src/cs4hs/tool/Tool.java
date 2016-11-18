@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import cs4hs.gui.nodedrawer.values.Values;
 import cs4hs.tool.nodes.FNode;
 import cs4hs.tool.options.Options;
 import cs4hs.tool.util.Searcher;
 import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.Sorter;
 import cs4hs.tool.util.ToolException;
-import cs4hs.tool.options.Options.*;
 
 /**
  * This class keeps track of all the steps taken by the algorithm. It provides
@@ -46,7 +46,7 @@ public class Tool {
 	 * @param item
 	 * @param data
 	 */
-	public void performAlgorithm(Algorithm algorithm, int item, List<Integer> data) {
+	public void performAlgorithm(Values.Algorithm algorithm, int item, List<Integer> data) {
 		switch (algorithm) {
 		case BINARY:
 			if (Options.SAFETY_MODE) {
@@ -67,6 +67,7 @@ public class Tool {
 		default:
 			throw new RuntimeException("Unrecognised algorithm.");
 		}
+		cur = 0; // reset position of the pointer
 	}
 
 	/**
@@ -129,6 +130,6 @@ public class Tool {
 		if (steps == null) {
 			return true;
 		}
-		return cur >= steps.size() - 1 || cur <= 0;
+		return cur >= steps.size()|| cur < 0;
 	}
 }
