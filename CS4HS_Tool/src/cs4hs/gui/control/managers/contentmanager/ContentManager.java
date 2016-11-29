@@ -17,4 +17,11 @@ public abstract class ContentManager {
 	 * @param frame
 	 */
 	public abstract void initialiseContent(Controller frame);
+
+	/**
+	 * This sets the default close operation for the frame.
+	 * 
+	 * @param frame
+	 */
+	protected abstract void setCloseOperation(Controller frame);
 }

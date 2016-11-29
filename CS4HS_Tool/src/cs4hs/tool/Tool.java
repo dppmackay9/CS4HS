@@ -12,7 +12,6 @@ import java.util.List;
 
 import cs4hs.tool.nodes.FNode;
 import cs4hs.tool.util.Searcher;
-import cs4hs.tool.util.SignalException;
 import cs4hs.tool.util.Sorter;
 import cs4hs.tool.util.ToolException;
 import cs4hs.tool.values.Options;
@@ -95,13 +94,8 @@ public class Tool {
 
 	/**
 	 * Moves the cursor forward
-	 * 
-	 * @throws SignalException
 	 */
-	public void step() throws SignalException {
-		if (atEnd()) {
-			throw new SignalException("At end");
-		}
+	public void step() {
 		if (cur < steps.size() - 1) {
 			cur++;
 		}
@@ -110,12 +104,8 @@ public class Tool {
 	/**
 	 * Moves the cursor backward
 	 * 
-	 * @throws SignalException
 	 */
-	public void undo() throws SignalException {
-		if (atEnd()) {
-			throw new SignalException("At End");
-		}
+	public void undo() {
 		if (cur > 0) {
 			cur--;
 		}
@@ -126,10 +116,10 @@ public class Tool {
 	 * 
 	 * @return
 	 */
-	private boolean atEnd() {
+	public boolean cursorAtEnd() {
 		if (steps == null) {
 			return true;
 		}
-		return cur > steps.size() - 1 || cur < 0;
+		return cur >= steps.size() - 1 || cur <= 0;
 	}
 }

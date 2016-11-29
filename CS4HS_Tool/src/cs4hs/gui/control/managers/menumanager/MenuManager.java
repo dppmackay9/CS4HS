@@ -19,5 +19,5 @@ public abstract class MenuManager {
 	/**
 	 * Adds some action listeners to the menu items.
 	 */
-	protected abstract void addActionListeners();
+	protected abstract void addActionListeners(Controller frame);
 }

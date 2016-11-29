@@ -29,19 +29,22 @@ public abstract class Controller extends JFrame {
 	private LogicManager logic;
 	private ViewManager view;
 
-	public Controller(ContentManager content, LogicManager logic, MenuManager menu, ViewManager view) {
-		content.initialiseContent(this);
-		menu.initialiseMenu(this);
-		this.logic = logic;
+	public Controller(ViewManager view, ContentManager content, MenuManager menu) {
 		this.view = view;
+		view.setup(this);
+		menu.initialiseMenu(this);
+		content.initialiseContent(this);
 	}
 
-	public LogicManager getLogic() {
+	public LogicManager getLogicManager() {
 		return logic;
 	}
 
-	public ViewManager getView() {
+	public ViewManager getViewManager() {
 		return view;
 	}
 
+	protected void setLogicManager(LogicManager logic) {
+		this.logic = logic;
+	}
 }

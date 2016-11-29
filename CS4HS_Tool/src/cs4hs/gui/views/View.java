@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import cs4hs.gui.control.Controller;
-import cs4hs.tool.util.SignalException;
 
 /**
  * Views are essentially JPanels with different content. This abstract class
@@ -41,9 +40,8 @@ public abstract class View extends JPanel {
 	/**
 	 * Updates any components inside the View when any data changed in the Model
 	 * 
-	 * @throws SignalException
 	 */
-	public abstract void update() throws SignalException;
+	public abstract void update();
 
 	@Override
 	public Dimension getPreferredSize() {

@@ -5,19 +5,28 @@ import cs4hs.gui.control.managers.viewmanager.builders.ViewBuilder;
 import cs4hs.gui.views.View;
 
 /**
- * This class is responsible for changing the view of the controller.
+ * This class is responsible for changing the view of the controller. You MUST
+ * call the setup method after this class is constructed.
  * 
  * @author Chris
  */
 public abstract class ViewManager {
+	private ViewBuilder builder;
+	protected Controller frame;
+
 	protected View[] views;
 	protected int cur;
 	protected int prev;
 
-	public ViewManager(Controller frame, ViewBuilder builder) {
+	public ViewManager(ViewBuilder builder) {
 		this.prev = 0;
 		this.cur = 0;
-		views = builder.createViews(frame);
+		this.builder = builder;
+	}
+
+	public void setup(Controller frame) {
+		this.views = builder.createViews(frame);
+		this.frame = frame;
 	}
 
 	/**
@@ -26,6 +35,12 @@ public abstract class ViewManager {
 	 * @param index
 	 */
 	public abstract void changeView(int index);
+
+	/**
+	 * Updates the state of the view
+	 * 
+	 */
+	public abstract void updateView();
 
 	/**
 	 * Returns the previous view

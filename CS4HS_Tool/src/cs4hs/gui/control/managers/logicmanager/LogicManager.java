@@ -35,16 +35,21 @@ public abstract class LogicManager {
 	 * @param algorithmStr
 	 * @param dataStr
 	 * @param item
+	 * @throws SignalException
 	 */
 	public abstract void doAlgorithm(String algorithmStr, String dataStr, int item);
 
 	/**
 	 * Executes exactly one iteration of the algorithm.
+	 * 
+	 * @throws SignalException
 	 */
 	public abstract void doStep();
 
 	/**
 	 * Executes exactly one iteration back of the algorithm.
+	 * 
+	 * @throws SignalException
 	 */
 	public abstract void doUndo();
 
