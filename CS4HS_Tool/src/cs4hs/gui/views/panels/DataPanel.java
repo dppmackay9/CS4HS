@@ -6,8 +6,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.nodedrawer.GUINode;
+import cs4hs.gui.views.View;
 import cs4hs.tool.nodes.FNode;
 import cs4hs.tool.values.Colours;
 import cs4hs.tool.values.Options;

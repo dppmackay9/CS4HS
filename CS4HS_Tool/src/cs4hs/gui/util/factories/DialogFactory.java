@@ -1,4 +1,4 @@
-package cs4hs.gui.util;
+package cs4hs.gui.util.factories;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

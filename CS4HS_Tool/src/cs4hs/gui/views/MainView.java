@@ -1,7 +1,6 @@
 package cs4hs.gui.views;
 
 import cs4hs.gui.control.Controller;
-import cs4hs.gui.control.Controller.View;
 import cs4hs.gui.views.display.Display;
 import cs4hs.gui.views.display.MainDisplay;
 import cs4hs.tool.util.SignalException;

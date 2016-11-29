@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -31,17 +33,7 @@ public abstract class Assets {
 
 	// Cached images
 
-	private static BufferedImage STEP_IMAGE;
-
-	private static BufferedImage UNDO_IMAGE;
-
-	private static BufferedImage RUN_IMAGE;
-
-	private static BufferedImage STOP_IMAGE;
-
-	private static BufferedImage SKIP_IMAGE;
-
-	private static BufferedImage EXEC_IMAGE;
+	private static Map<String, BufferedImage> cachedImages = new HashMap<String, BufferedImage>();
 
 	// File Getters
 
@@ -51,46 +43,34 @@ public abstract class Assets {
 
 	// Image Getters
 
-	public static BufferedImage getExecImage() {
-		if (EXEC_IMAGE == null) {
-			EXEC_IMAGE = getImage("execute-img.png");
-		}
-		return EXEC_IMAGE;
+	public static BufferedImage getExecuteImage() {
+		String imgName = "execute-btn.png";
+		return getCachedImage(imgName);
 	}
 
-	public static BufferedImage getStepImage() {
-		if (STEP_IMAGE == null) {
-			STEP_IMAGE = getImage("step-img.png");
-		}
-		return STEP_IMAGE;
+	public static BufferedImage getRunImage(boolean active) {
+		String imgName = getImageName("run-btn", active);
+		return getCachedImage(imgName);
 	}
 
-	public static BufferedImage getUndoImage() {
-		if (UNDO_IMAGE == null) {
-			UNDO_IMAGE = getImage("undo-img.png");
-		}
-		return UNDO_IMAGE;
+	public static BufferedImage getSkipImage(boolean active) {
+		String imgName = getImageName("skip-btn", active);
+		return getCachedImage(imgName);
 	}
 
-	public static BufferedImage getRunImage() {
-		if (RUN_IMAGE == null) {
-			RUN_IMAGE = getImage("run-img.png");
-		}
-		return RUN_IMAGE;
+	public static BufferedImage getStepImage(boolean active) {
+		String imgName = getImageName("step-btn", active);
+		return getCachedImage(imgName);
 	}
 
-	public static BufferedImage getStopImage() {
-		if (STOP_IMAGE == null) {
-			STOP_IMAGE = getImage("stop-img.png");
-		}
-		return STOP_IMAGE;
+	public static BufferedImage getStopImage(boolean active) {
+		String imgName = getImageName("stop-btn", active);
+		return getCachedImage(imgName);
 	}
 
-	public static BufferedImage getSkipImage() {
-		if (SKIP_IMAGE == null) {
-			SKIP_IMAGE = getImage("skip-img.png");
-		}
-		return SKIP_IMAGE;
+	public static BufferedImage getUndoImage(boolean active) {
+		String imgName = getImageName("undo-btn", active);
+		return getCachedImage(imgName);
 	}
 
 	// Helper Methods
@@ -124,6 +104,24 @@ public abstract class Assets {
 	 */
 	private static InputStream getFile(String filename) {
 		return Assets.class.getResourceAsStream(String.format(FILE_STORAGE_PATH + "%s.txt", filename));
+	}
+
+	/**
+	 * Retrieves the image inside the cache. If the image is not cache, it loads
+	 * it once and that value will be retrieved repeatedly.
+	 * 
+	 * @param imgName
+	 * @return
+	 */
+	private static BufferedImage getCachedImage(String imgName) {
+		if (!cachedImages.containsKey(imgName)) {
+			cachedImages.put(imgName, getImage(imgName));
+		}
+		return cachedImages.get(imgName);
+	}
+
+	private static String getImageName(String file, boolean active) {
+		return String.format("%s-%s.png", file, active ? "active" : "inactive");
 	}
 
 	/**
